@@ -8,7 +8,8 @@ import Card from '../../componets/UI/Card';
 import { generatePublicUrl } from '../../urlConfig';
 import { Link } from 'react-router-dom';
 import './style.css';
-function OrderPage() {
+
+const OrderPage = (props) => {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user);
     useEffect(() => {

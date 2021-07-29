@@ -1,0 +1,13 @@
+.card{
+    width: 100%;
+    background: #fff;
+    box-shadow: rgb(0 0 0 / 20%) 0px 1px 1px 0px !important;
+}
+
+.cardHeader{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 20px;
+    border-bottom: 0.1px solid #e3e3e3;
+    color: #878787;
+}

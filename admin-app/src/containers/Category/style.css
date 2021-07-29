@@ -1,0 +1,27 @@
+.modal-header{
+  padding: 5px 15px;
+}
+.modal-title{
+  font-size: 18px;
+}
+.modal-content {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px !important;
+  backdrop-filter: blur(5px);
+}
+.actionsBtnContainer{
+  display: flex;
+  align-items: center;
+}
+.actionsBtnContainer > button {
+  border: 0;
+  margin: 0 5px;
+  font-size: 14px;
+  background: linear-gradient(to right, #2ec7cb 0%, #6c8bef 100%);
+  color: #ffffff;
+  border-radius: 3px;
+}
+.modal-footer{
+  padding: 5px 15px;
+}
+

@@ -1,0 +1,30 @@
+.modal-content {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px !important;
+    backdrop-filter: blur(5px);
+  }
+
+.key{
+  font-size: 12px;
+  font-weight: bold;
+  font-family: sans-serif;
+}
+
+.value {
+  font-size: 14px;
+  font-family: sans-serif;
+}
+
+.productImgContainer{
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  margin-right: 0.5rem;
+  text-align: center;
+}
+
+.productImgContainer img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}

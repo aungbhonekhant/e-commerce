@@ -1,0 +1,10 @@
+.price{
+    font-size: 14px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+.currency{
+    font-size: 10px;
+    font-weight: 500;
+    margin-right: 5px;
+}

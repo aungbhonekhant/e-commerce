@@ -1,0 +1,17 @@
+.cartIconContainer{
+    font-size: 20px;
+    position: relative;
+}
+.count{
+    position: absolute;
+    background: red;
+    width: 15px;
+    height: 15px;
+    border-radius: 5px;
+    font-size: 10px;
+    border: 1px solid #fff;
+    text-align: center;
+    align-self: center;
+    top: -12px;
+    right: -6px;
+}

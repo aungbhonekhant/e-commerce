@@ -1,0 +1,37 @@
+.orderItemContainer{
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+}
+
+.orderItemImageContainer {
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+}
+
+.orderItemImage{
+    max-width: 80px;
+    max-height: 80px;
+}
+
+.orderItemDetail{
+    display: flex;
+    flex: 1;
+}
+
+.orderItemName{
+    width: 300px;
+    box-sizing: border-box;
+    padding: 0 20px;
+    font-size: 12px;
+}
+
+.orderItemPrice{
+    box-sizing: border-box;
+    padding: 0 40px;
+    display: flex;
+    align-items: flex-start;
+    font-size: 14px;
+}

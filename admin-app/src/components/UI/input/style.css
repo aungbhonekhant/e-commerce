@@ -1,0 +1,27 @@
+select{
+    appearance:none;
+}
+.select{
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'><path d='M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z' fill='silver'/></svg>");
+  background-position:
+    calc(100% - 12px) calc(1em + -1px),
+    calc(100% - 15px) calc(1em + 2px);
+  background-repeat: no-repeat;
+}
+
+.select .option {
+  background: rgba(26, 25, 51, 0.589);
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+  opacity: 1;
+  height: 100px !important;
+}
+.option::hover,
+.select .option:checked{
+  background-color: red !important;
+  box-shadow: 0 0 10px 100px #a8182b inset;
+}
+.select:hover,
+.select .option:checked{
+  background-color: red;
+}

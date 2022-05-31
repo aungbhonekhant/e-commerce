@@ -19,6 +19,10 @@ const productSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    quantity: {
+        type: Number,
+        required: true
+    },
     description: {
         type: String,
         required: true,
@@ -30,6 +34,14 @@ const productSchema = new mongoose.Schema({
     productPictures: [
         {img: { type: String }}
     ],
+    weight: {
+        type: Number,
+        required: true,
+    },
+    status: {
+        type: String,
+        required: true,
+    },
     reviews: [
         {
             userId:{ type:mongoose.Schema.Types.ObjectId, ref: 'User'},
@@ -37,6 +49,18 @@ const productSchema = new mongoose.Schema({
         }
     ],
     category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required:true },
+    brand: { type: mongoose.Schema.Types.ObjectId, ref: 'Brand', required:true },
+    tags: [
+        {
+            tagsId:{ type: mongoose.Schema.Types.ObjectId, ref: 'Tags', required:true }
+        }  
+    ],
+    varients: [
+        {
+            option: {type: String},
+            value:[{type:String}]
+        }
+    ],
     createdBy: {
         type: mongoose.Schema.Types.ObjectId, ref: 'User',
         required: true

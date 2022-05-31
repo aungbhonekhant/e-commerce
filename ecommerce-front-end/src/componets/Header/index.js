@@ -121,7 +121,7 @@ const Header = (props) => {
             <span>New Customer?</span>
             <a
               onClick={() => {
-                setLoginModal(false);
+                setLoginModal(true);
                 setSignup(true);
               }}
               style={{ color: '#2874f0' }}
@@ -140,7 +140,7 @@ const Header = (props) => {
         onClose={() => setLoginModal(false)}
       >
         <div className="authContainer">
-          <div className="row">
+          <div className="row authContainerInnder">
             <div className="leftspace">
               <h2>Login</h2>
               <p>Get access to your Orders, Wishlist and Recommendations</p>
@@ -185,9 +185,9 @@ const Header = (props) => {
                 />
                 <div className="term_privacy">
                   By continuing, you agree to Our
-                  <a class="term" target="_blank" href=""> Terms of Use</a>
+                  <a className="term" target="_blank" href=""> Terms of Use</a>
                   and
-                  <a class="privacy" target="_blank" href=""> Privacy Policy</a>.
+                  <a className="privacy" target="_blank" href=""> Privacy Policy</a>.
                 </div>
                 <MaterialButton
                   title={signup ? "Register" : "Login"}
@@ -225,53 +225,63 @@ const Header = (props) => {
             <img src={goldenStar} className="goldenStar" alt="" />
           </a>
         </div>
-        <div style={{
-          padding: '0 10px'
-        }}>
-          <div className="searchInputContainer">
-            <input
-              className="searchInput"
-              placeholder={'search for products, brands and more'}
-            />
-            <div className="searchIconContainer">
-              <IoIosSearch style={{
-                color: '#2874f0'
-              }} />
-            </div>
+        {
+          props.search && 
+          <div style={{
+            padding: '0 10px'
+          }}>
+            <div className="searchInputContainer">
+              <input
+                className="searchInput"
+                placeholder={'search for products, brands and more'}
+              />
+              <div className="searchIconContainer">
+                <IoIosSearch style={{
+                  color: '#2874f0'
+                }} />
+              </div>
 
+            </div>
           </div>
-        </div>
+        }
         <div className="rightMenu">
           {/* menu when hover username or login button */}
 
           {
-            auth.authenticate ?
-              renderLoggedInMenu() : renderNonLoggedInMenu()
+            props.login &&
+            (auth.authenticate ?
+            renderLoggedInMenu() : renderNonLoggedInMenu())
           }
 
           {/* menu when hover username or login button end*/}
 
-          <DropdownMenu
-            menu={
-              <a className="more">
-                <span>More</span>
-                <IoIosArrowDown />
+          {
+            props.more &&
+            <DropdownMenu
+              menu={
+                <a className="more">
+                  <span>More</span>
+                  <IoIosArrowDown />
+                </a>
+              }
+              menus={[
+                { label: 'Notification Preference', href: '', icon: null },
+                { label: 'Sell on flipkart', href: '', icon: null },
+                { label: '24x7 Customer Care', href: '', icon: null },
+                { label: 'Advertise', href: '', icon: null },
+                { label: 'Download App', href: '', icon: null }
+              ]}
+            />
+          }
+          {
+            props.cart &&
+            <div>
+              <a className="cart" href={`/cart`} >
+                <Cart count={Object.keys(cart.cartItems).length} />
+                <span style={{ margin: '0 10px' }}>Cart</span>
               </a>
-            }
-            menus={[
-              { label: 'Notification Preference', href: '', icon: null },
-              { label: 'Sell on flipkart', href: '', icon: null },
-              { label: '24x7 Customer Care', href: '', icon: null },
-              { label: 'Advertise', href: '', icon: null },
-              { label: 'Download App', href: '', icon: null }
-            ]}
-          />
-          <div>
-            <a className="cart" href={`/cart`} >
-              <Cart count={Object.keys(cart.cartItems).length} />
-              <span style={{ margin: '0 10px' }}>Cart</span>
-            </a>
-          </div>
+            </div>
+          }
         </div>
 
       </div>

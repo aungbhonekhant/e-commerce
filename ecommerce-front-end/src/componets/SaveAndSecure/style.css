@@ -1,0 +1,29 @@
+.s2Container{
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    padding: 20px 0px 0px;
+    webkit-flex-flow: column;
+    -ms-flex-flow: column;
+    flex-flow: column;
+}
+
+.s2ContainerInner{
+    display: block;
+    width: 100%;
+}
+
+.s2Wrap{
+    margin: 4px 15px 8px;
+    text-align: center;
+}
+
+.s2WrapInner{
+    font-size: 14px;
+    text-align: left;
+    display: inline-block;
+    color: #878787;
+    padding: 5px 0 5px 35px;
+    font-weight: 500;
+}

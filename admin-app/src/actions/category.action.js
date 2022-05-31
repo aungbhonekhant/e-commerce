@@ -27,20 +27,28 @@ const getAllCategory = () => {
 export const addCategory = (form) => {
     return async dispatch => {
         dispatch({ type: categoryConstants.ADD_NEW_CATEGORY_REQUEST });
-        
-        const res = await axios.post(`/category/create`, form);
-        if (res.status === 201) {
-            dispatch({
-                type: categoryConstants.ADD_NEW_CATEGORY_SUCCESS,
-                payload: { category: res.data.category }
-            })
-        } else {
+        try {
+            const res = await axios.post(`/category/create`, form);
+            
+            if (res.status === 201) {
+                dispatch({
+                    type: categoryConstants.ADD_NEW_CATEGORY_SUCCESS,
+                    payload: { category: res.data.category }
+                })
+            } else {
+                console.log({action_res: res.data.error });
+                dispatch({
+                    type: categoryConstants.ADD_NEW_CATEGORY_FAILURE,
+                    payload: { error: res.data.error }
+                })
+            }
+        } catch (error) {
+            
             dispatch({
                 type: categoryConstants.ADD_NEW_CATEGORY_FAILURE,
-                payload: {error: res.data.error}
+                payload: {error: "Something want wrong, Please check your input!"}
             })
         }
-        //console.log(res);
     }
 }
 
@@ -56,7 +64,7 @@ export const updateCategories = (form) => {
         } else {
             dispatch({
                 type: categoryConstants.UPDATE_CATEGORIES_FAILURE,
-                payload: { error: res.data.error}
+                payload: { error: res.data.error }
             })
         }
     }
@@ -66,7 +74,7 @@ export const deleteCategories = (ids) => {
     return async dispatch => {
         dispatch({ type: categoryConstants.DELETE_CATEGORIES_REQUEST });
         const res = await axios.post(`/category/delete`, {
-            payload:{
+            payload: {
                 ids
             }
         });
@@ -78,7 +86,7 @@ export const deleteCategories = (ids) => {
         } else {
             dispatch({
                 type: categoryConstants.DELETE_CATEGORIES_FAILURE,
-                payload: {error: res.data.error}
+                payload: { error: res.data.error }
             })
         }
     }

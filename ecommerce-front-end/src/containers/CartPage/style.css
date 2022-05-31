@@ -1,9 +1,26 @@
 .cartContainer{
-    display: flex;
     max-width: 1260px;
-    margin: 15px auto;
-    justify-content: space-between;
-    /* align-items: flex-start; */
+    margin: 0 auto;
+}
+
+.cartContainer .cartContainerInner {
+    width: 100%;
+    position: relative;
+    margin: 0 auto;
+    min-width: 978px;
+    max-width: 1680px;
+    padding: 8px;
+}
+
+.cartContainer .cartContainerInner .warp{
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+
+    webkit-flex-flow: row;
+    -ms-flex-flow: row;
+    flex-flow: row;
+    width: 100%;
 }
 .placeOrder{
     width: 100%;
@@ -11,10 +28,28 @@
     background: #ffffff;
     justify-content: flex-end;
     box-shadow: 0 0 10px 10px #eee;
-    padding: 10px 0;
+    padding: 16px 22px;
     box-sizing: border-box;
 }
 
 .placeOrder > div{
     width: 250px;
+}
+
+.priceDetails{
+    padding: 0px 0px 0px 16px;
+    webkit-flex-flow: column;
+    -ms-flex-flow: column;
+    flex-flow: column;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 64px;
+    bottom: 0;
+    -webkit-align-self: flex-start;
+    -ms-flex-item-align: start;
+    align-self: flex-start;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    width: 43.33%;
 }

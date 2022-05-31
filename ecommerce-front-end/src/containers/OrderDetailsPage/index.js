@@ -21,7 +21,7 @@ const OrderDetailsPage = (props) => {
     }
 
     return (
-        <Layout>
+        <Layout menuheader={true} more={true} cart={true} search={true} login={true}>
             <div
                 style={{
                     width: "1160px",

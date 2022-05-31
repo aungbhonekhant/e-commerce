@@ -15,9 +15,9 @@ function Layout(props) {
           !isMobile &&
           props.sidebar ?
           <Container fluid>
-            <Row>
+            <Row className="">
               <Col md={2} className="sidebar">
-                <ul>
+                <ul className="mt-5">
                   <li>
                     <NavLink exact to={`/`}>Home</NavLink>
                   </li>
@@ -32,6 +32,10 @@ function Layout(props) {
 
                   <li>
                     <NavLink to={`/products`}>Products</NavLink>
+                  </li>
+
+                  <li>
+                    <NavLink to={`/brands`}>Brands</NavLink>
                   </li>
 
                   <li>

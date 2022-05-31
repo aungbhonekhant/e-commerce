@@ -1,10 +1,15 @@
-.modal-content {
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 5px !important;
-    backdrop-filter: blur(5px);
-  }
+.priductModelLeft {
+  border-right: 0.002rem solid rgba(128, 127, 127, 0.418);
+}
 
-.key{
+.priductModeInnerCard {
+  background-color: rgba(255, 255, 255, 0.027) !important;
+  backdrop-filter: blur(0px);
+  margin-bottom: 1rem;
+  border: none;
+}
+
+.key {
   font-size: 12px;
   font-weight: bold;
   font-family: sans-serif;
@@ -15,7 +20,7 @@
   font-family: sans-serif;
 }
 
-.productImgContainer{
+.productImgContainer {
   width: 100px;
   height: 100px;
   overflow: hidden;
@@ -27,4 +32,42 @@
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
+}
+
+/* variants table css */
+.product-variants-preview {
+  /* background-color: rgba(255, 255, 255, 0.2) !important; */
+  background-color: transparent !important;
+  color: #fff;
+  font-size: 0.865rem !important;
+}
+
+.product-variants-preview tr{
+  height: 4.25rem !important;
+  vertical-align: middle;
+}
+
+.product-variants-preview tbody tr:hover{
+  color: #fff !important;
+}
+
+.product-variants-preview th {
+  border-top: 0px solid #dee2e6 !important;
+}
+
+.product-variants-preview td {
+  border-top: 0.002rem solid rgba(128, 127, 127, 0.418) !important;
+  min-width: 8rem;
+  vertical-align: middle;
+}
+
+.product-variants-preview td .form-group {
+  margin-bottom: -1px;
+}
+.product-variants-preview td .form-group input {
+  vertical-align: middle;
+}
+
+.product-variants-preview thead th {
+  border-bottom: 0.004rem solid rgba(128, 127, 127, 0.418) !important;
 }

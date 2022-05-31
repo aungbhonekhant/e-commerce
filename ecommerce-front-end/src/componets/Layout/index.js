@@ -5,9 +5,13 @@ import MenuHeader from '../MenuHeader'
 function Layout(props) {
     return (
         <>
-            <Header />
-            <MenuHeader />
-            { props.children }
+            <div style={{ marginBottom: "16px" }}>
+                <Header cart={props.cart} more={props.more} search={props.search} login={props.login} />
+                {
+                    props.menuheader && <MenuHeader />
+                }
+            </div>
+            {props.children}
         </>
     )
 }

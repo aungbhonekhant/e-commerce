@@ -3,6 +3,8 @@ const adminRoutes = require('./admin/auth');
 const initialDataRoutes = require('./admin/initialData');
 const pageRoutes = require('./admin/page');
 const categoryRoutes = require('./category');
+const brandRoutes = require('./brand');
+const tagsRoutes = require('./tags');
 const productRoutes = require('./product');
 const cartRoutes = require('./cart');
 const addressRoutes = require('./address');
@@ -22,6 +24,12 @@ module.exports = (app) => {
 
   //category CRUD
   app.use('/api/category', categoryRoutes);
+
+  //brand CRUD
+  app.use('/api/brand', brandRoutes);
+
+  //product tags CRUD
+  app.use('/api/tags', tagsRoutes);
 
   //product CRUD
   app.use('/api/product', productRoutes);

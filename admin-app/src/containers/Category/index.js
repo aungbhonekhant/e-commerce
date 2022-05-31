@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import {
     addCategory,
@@ -216,7 +216,7 @@ function Category() {
     return (
         <Layout sidebar>
             <Container fluid>
-                <Row>
+                <Row className="mt-5">
                     <Col md={6}>
                         <div style={{ margin: "5px 0" }}>
                             <h3>Categories</h3>
@@ -224,10 +224,10 @@ function Category() {
                     </Col>
                     <Col md={6} >
                         <div className="actionsBtnContainer" style={{ display: "flex", justifyContent: isMobile ? "flex-start" : "flex-end", margin: "5px 0" }}>
-                            <span>Actions: </span>
-                            <button onClick={handleShow}><IoIosAdd /> <span>Add</span></button>
-                            <button onClick={deleteCategory}><IoIosTrash /> <span>Delete</span> </button>
-                            <button onClick={updateCategory}><IoIosBrush /> <span>Edit</span></button>
+                            <span className="mr-1">Actions: </span>
+                            <Button size="sm" onClick={handleShow}><IoIosAdd /> <span>Add</span></Button>
+                            <Button size="sm" onClick={deleteCategory}><IoIosTrash /> <span>Delete</span> </Button>
+                            <Button size="sm" onClick={updateCategory}><IoIosBrush /> <span>Edit</span></Button>
                         </div>
                     </Col>
                 </Row>
@@ -261,7 +261,7 @@ function Category() {
                 buttons={[
                     {
                         label: 'No',
-                        color: 'outline-danger',
+                        color: 'ngt',
                         onClick: () => {
                             alert('no');
                             setShow(false);
@@ -269,7 +269,7 @@ function Category() {
                     },
                     {
                         label: category.loading ? 'Saving' : 'Save',
-                        color: 'outline-info',
+                        color: 'posv',
                         onClick: submitAddCategoryForm
                     }
                 ]}
@@ -290,7 +290,7 @@ function Category() {
                 buttons={[
                     {
                         label: 'No',
-                        color: 'outline-danger',
+                        color: 'ngt',
                         onClick: () => {
                             alert('no');
                             setUpdateCategoryModal(false);
@@ -298,7 +298,7 @@ function Category() {
                     },
                     {
                         label: category.loading ? 'Updating' : 'Update',
-                        color: 'outline-info',
+                        color: 'posv',
                         onClick: updateCategoriesForm
                     }
                 ]}
@@ -318,7 +318,7 @@ function Category() {
                 buttons={[
                     {
                         label: 'No',
-                        color: 'outline-info',
+                        color: 'posv',
                         onClick: () => {
                             alert('no');
                             setDeleteCategoryModal(false);
@@ -326,7 +326,7 @@ function Category() {
                     },
                     {
                         label: 'Yes',
-                        color: 'outline-danger',
+                        color: 'ngt',
                         onClick: deleteCategories
                     }
                 ]}

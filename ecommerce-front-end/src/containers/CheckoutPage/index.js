@@ -3,10 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addOrder, getAddress, getCartItems } from '../../actions';
 import Layout from '../../componets/Layout';
 import { MaterialButton, MaterialInput, Anchor } from '../../componets/MaterialUI';
+import { Login, signup as _signup } from '../../actions';
 import Card from '../../componets/UI/Card';
 import AddressForm from './AddressForm';
 import CartPage from '../CartPage';
-import PriceDetails from '../../componets/PriceDetails'
+import PriceDetails from '../../componets/PriceDetails';
+import SaceAndSecure from '../../componets/SaveAndSecure';
+import { ImTruck } from "react-icons/im";
+import { IoMdNotifications } from "react-icons/io";
+import { IoMdStar } from "react-icons/io";
 
 import './style.css';
 
@@ -24,6 +29,7 @@ const CheckoutStep = (props) => {
     );
 }
 
+// address detail 
 const Address = ({
     adr,
     selectAddress,
@@ -85,20 +91,52 @@ const Address = ({
 }
 
 const CheckoutPage = (props) => {
-    const user = useSelector(state => state.user);
-    const cart = useSelector(state => state.cart);
-    const auth = useSelector(state => state.auth);
+    const user = useSelector(state => state.user); //getting user data from redux state
+    const cart = useSelector(state => state.cart); //getting cart items from redux state
+    const auth = useSelector(state => state.auth); //getting auth credentials from redux state
     const [newAddress, setNewAddress] = useState(false); //for add new address form show
-    const [address, setAddress] = useState([]);
-    const [confirmAddress, setConfirmAddress] = useState(false);
-    const [selectedAddress, setSelectedAddress] = useState(null);
-    const [orderSummary, setOrderSummary] = useState(false);
-    const [orderConfirmation, setOrderConfirmation] = useState(false);
-    const [paymentOption, setPaymentOption] = useState(false);
-    const [confirmOrder, setConfirmOrder] = useState(false);
+    const [address, setAddress] = useState([]);   //set state for deli address 
+    const [confirmAddress, setConfirmAddress] = useState(false); //user confirmed address or not for deli address
+    const [selectedAddress, setSelectedAddress] = useState(null); //for store address when user is selected address
+    const [orderSummary, setOrderSummary] = useState(false); //if true to show the user's items 
+    const [orderConfirmation, setOrderConfirmation] = useState(false); //if user's items are every thind ok set true to go next step
+    const [paymentOption, setPaymentOption] = useState(false); // if payment option is chosed, will true and go next step
+    const [confirmOrder, setConfirmOrder] = useState(false); //final order
     const dispatch = useDispatch();
 
-    const onAddressSubmit = (addr) => {
+    //user login and signup
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [signup, setSignup] = useState(false);
+    const payload = {
+        email,
+        password,
+    };
+
+    const userSignup = () => {
+        const payload = { firstName, lastName, email, password };
+        if (
+            firstName === "" ||
+            lastName === "" ||
+            email === "" ||
+            password === ""
+        ) {
+            return
+        }
+        dispatch(_signup(payload));
+    }
+
+    const userLogin = () => {
+        if (signup) {
+          userSignup();
+        } else {
+          dispatch(Login(payload));
+        };
+    }
+
+    const onAddressSubmit = (addr) => { //choose address for deli
         setSelectedAddress(addr);
         setConfirmAddress(true);
         setOrderSummary(true);
@@ -119,6 +157,7 @@ const CheckoutPage = (props) => {
         setOrderSummary(true);
     }
 
+    //show edit from 
     const enableAddressEditForm = (addr) => {
         const updatedAddress = address.map((adr) =>
             adr._id === addr._id ? { ...adr, edit: true } : { ...adr, edit: false }
@@ -127,6 +166,7 @@ const CheckoutPage = (props) => {
         setAddress(updatedAddress)
     }
 
+    //confirm order
     const userOrderConfirmation = () => {
         setOrderConfirmation(true);
         setOrderSummary(false);
@@ -135,18 +175,20 @@ const CheckoutPage = (props) => {
 
     //when order confirm, make order.
     const onConfirmOrder = () => {
-
-       const totalAmount =  Object.keys(cart.cartItems).reduce((totalPrice, key) => {
+        //total order amount
+        const totalAmount = Object.keys(cart.cartItems).reduce((totalPrice, key) => {
             const { price, qty } = cart.cartItems[key];
             return totalPrice + price * qty
         }, 0);
 
+        //orderd items
         const items = Object.keys(cart.cartItems).map(key => ({
             productId: key,
             payablePrice: cart.cartItems[key].price,
             purchasedQty: cart.cartItems[key].qty
         }));
 
+        //argument to save order in api 
         const payload = {
             addressId: selectedAddress._id,
             totalAmount,
@@ -160,8 +202,8 @@ const CheckoutPage = (props) => {
     }
 
     useEffect(() => {
-        auth.authenticate && dispatch(getAddress());
-        auth.authenticate && dispatch(getCartItems());
+        auth.authenticate && dispatch(getAddress()); //if uder login gett deli address
+        auth.authenticate && dispatch(getCartItems()); // if uder login gett user's cart items
     }, [auth.authenticate]);
 
     useEffect(() => {
@@ -170,7 +212,7 @@ const CheckoutPage = (props) => {
     }, [user.address])
 
 
-    if (confirmOrder) {
+    if (confirmOrder) { //order success page
         return (
             <Layout>
                 <Card>
@@ -182,25 +224,101 @@ const CheckoutPage = (props) => {
 
 
     return (
-        <Layout>
-            <div className="cartContainer" style={{ alignItems: 'flex-start' }}>
-                <div className="checkoutContainer">
+        <Layout menuheader={false} more={false} cart={false} search={false} login={false}>
+            <div className="checkoutContainer row">
+                {/* user input and checkout steps */}
+                <div className="checkout">
                     {/* check if user logged in */}
                     <CheckoutStep
                         stepNumber={'1'}
                         title={'LOGIN'}
                         active={!auth.authenticate}
                         body={
-
                             auth.authenticate ?
                                 <div className="loggedInId">
-                                    <span style={{ fontWeight: 500 }}>{auth.user.fullName}</span>
-                                    <span style={{ margin: '0 5pxk' }}> {auth.user.email}</span>
+                                    <span className="loggedInIdName">{auth.user.fullName}</span>
+                                    <span className="loggedInIdEmail"> {auth.user.email}</span>
                                 </div> :
-                                <div>
-                                    <MaterialInput
-                                        label="Email"
-                                    />
+                                <div className="checkoutPageLogin">
+                                    <div>
+                                        <div className="checkoutPageLoginContainer row">
+
+                                            <div className="checkoutPageLoginForm col">
+                                                <div className="checkoutPageLoginFormInput">
+                                                    {
+                                                        signup && (
+                                                            <MaterialInput
+                                                                type="text"
+                                                                label="Enter First Name"
+                                                                value={firstName}
+                                                                onChange={(e) => setFirstName(e.target.value)}
+                                                            />
+                                                        )
+                                                    }
+
+                                                    {
+                                                        signup && (
+                                                            <MaterialInput
+                                                                type="text"
+                                                                label="Enter Last Name"
+                                                                value={lastName}
+                                                                onChange={(e) => setLastName(e.target.value)}
+                                                            />
+                                                        )
+                                                    }
+                                                    <MaterialInput
+                                                        type="text"
+                                                        label="Enter Email/Enter Mobile Number"
+                                                        value={email}
+                                                        onChange={(e) => setEmail(e.target.value)}
+                                                    />
+                                                    <MaterialInput
+                                                        type="password"
+                                                        label="Enter Password"
+                                                        value={password}
+                                                        onChange={(e) => setPassword(e.target.value)}
+                                                        rightElement={!signup && <a href="#">Forgot?</a>}
+                                                    />
+                                                </div>
+
+                                                <div className="userAggrement">
+                                                    By continuing, you agree to Flipkart's
+                                                    <a href="#" target="_blank" rel="noopener noreferrer">Terms of Use</a>
+                                                    and
+                                                    <a href="#" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+                                                    .
+                                                </div>
+                                                <div className="checkoutPageSignup">
+                                                    <span>{signup ? "Already Registered?" : "New Customer?"}</span>
+                                                    <a onClick={() => { signup? setSignup(false) : setSignup(true) }}>{signup ? "Login" : "Sign up"}</a>
+                                                </div>
+                                                <div className="checkoutPageLoginButton">
+                                                    <MaterialButton onClick={userLogin} title={signup ? "Register" : "Login"} />
+                                                </div>
+
+                                            </div>
+
+                                            <div className="loginAdvantages col">
+                                                <div className="loginAdvantagesContainer">
+                                                    <span>Advantages of our secure login</span>
+                                                    <ul>
+                                                        <li className="loginAdvantagesList">
+                                                            <ImTruck className="advantagesIcon" />
+                                                            <span>Easily Track Orders, Hassle free Returns</span>
+                                                        </li>
+                                                        <li className="loginAdvantagesList">
+                                                            <IoMdNotifications className="advantagesIcon" />
+                                                            <span>Get Relevant Alerts and Recommendation</span>
+                                                        </li>
+                                                        <li className="loginAdvantagesList">
+                                                            <IoMdStar className="advantagesIcon" />
+                                                            <span>Wishlist, Reviews, Ratings and more.</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                         }
 
@@ -292,15 +410,21 @@ const CheckoutPage = (props) => {
                     />
                 </div>
 
-                <PriceDetails
-                    totalItem={Object.keys(cart.cartItems).reduce(function (qty, key) {
-                        return qty + cart.cartItems[key].qty;
-                    }, 0)}
-                    totalPrice={Object.keys(cart.cartItems).reduce((totalPrice, key) => {
-                        const { price, qty } = cart.cartItems[key];
-                        return totalPrice + price * qty
-                    }, 0)}
-                />
+                {/* order details and total amount */}
+                <div className="checkoutPriceDetial">
+                    <PriceDetails
+                        totalItem={Object.keys(cart.cartItems).reduce(function (qty, key) {
+                            return qty + cart.cartItems[key].qty;
+                        }, 0)}
+                        totalPrice={Object.keys(cart.cartItems).reduce((totalPrice, key) => {
+                            const { price, qty } = cart.cartItems[key];
+                            return totalPrice + price * qty
+                        }, 0)}
+                    />
+                    {/* Showing services */}
+                    <SaceAndSecure />
+                </div>
+
 
             </div>
 

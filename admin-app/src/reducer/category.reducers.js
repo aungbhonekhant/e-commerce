@@ -2,6 +2,7 @@ import { categoryConstants } from "../actions/constants";
 
 const initState = {
     categories: [],
+    new_category: [],
     loading: false,
     error: null,
 };
@@ -73,6 +74,7 @@ export default (state = initState, action) => {
             state = {
                 ...state,
                 categories: updatedCategories,
+                new_category: category,
                 loading: false,
             }
             break;

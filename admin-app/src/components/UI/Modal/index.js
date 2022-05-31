@@ -1,16 +1,17 @@
 import React from 'react';
 import { Modal, Button } from "react-bootstrap";
+import './style.css';
 
 function NewModal(props) {
     return (
-        <Modal size={props.size} show={props.show} onHide={props.handleClose}>
-            <Modal.Header closeButton style={{ backgroundColor: "RGB(0,0,0,0)" }}>
-                <Modal.Title>{props.modalTitle}</Modal.Title>
+        <Modal size={props.size} show={props.show} onHide={props.handleclose}>
+            <Modal.Header closeButton>
+                <Modal.Title>{props.modaltitle}</Modal.Title>
             </Modal.Header>
-            <Modal.Body style={{ backgroundColor: "RGB(0,0,0,0)" }}>
+            <Modal.Body className="modalBody">
                 {props.children}
             </Modal.Body>
-            <Modal.Footer style={{ backgroundColor: "RGB(0,0,0,0)" }}>
+            <Modal.Footer>
                 {
                     props.buttons ? props.buttons.map((btn, index) =>
                         <Button
@@ -23,13 +24,13 @@ function NewModal(props) {
                             {btn.label}
                         </Button>
                     ) :
-                        <Button variant="outline-info"
+                        <Button variant="posv"
                             {...props}
                             className="btn-sm"
-                            onClick={props.handleClose}
+                            onClick={props.handleclose}
                         >
                             Save
-                    </Button>
+                        </Button>
                 }
 
             </Modal.Footer>

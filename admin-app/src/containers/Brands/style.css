@@ -1,0 +1,11 @@
+.status-active{
+    font-size: 0.65rem;
+    color: #02d502;
+    border-radius: 1rem;
+}
+
+.status-inactive{
+    font-size: 0.65rem;
+    color: #d50202;
+    border-radius: 1rem;
+}

@@ -30,7 +30,7 @@ function ProductListPage(props) {
 
     return (
 
-        <Layout>
+        <Layout menuheader={true} more={true} cart={true} search={true} login={true}>
             {renderProducts()}
         </Layout>
 

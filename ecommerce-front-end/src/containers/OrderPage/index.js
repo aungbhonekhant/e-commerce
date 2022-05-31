@@ -18,7 +18,7 @@ const OrderPage = (props) => {
 
     return (
 
-        <Layout>
+        <Layout menuheader={true} more={true} cart={true} search={true} login={true}>
             <div style={{ maxWidth: "1160px", margin: "5px auto" }}>
                 <Breed
                     breed={[

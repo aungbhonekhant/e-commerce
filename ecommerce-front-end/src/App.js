@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import HomePage from './containers/HomePage';
 import ProductListPage from './containers/ProductListPage';
 import { useDispatch, useSelector } from 'react-redux';
-import { isUserLoggedIn, updateCart } from './actions';
+import { isUserLoggedIn, updateCart, getCartItems } from './actions';
 import ProductDetailsPage from './containers/ProductDetailsPage';
 import CartPage from './containers/CartPage';
 import CheckoutPage from './containers/CheckoutPage';
@@ -26,6 +26,10 @@ function App() {
   useEffect(() => {
     console.log('App.js - updateCart')
     dispatch(updateCart());
+    if(auth.authenticate){
+      dispatch(getCartItems())
+    }
+    
   }, [auth.authenticate]);
   
   return (

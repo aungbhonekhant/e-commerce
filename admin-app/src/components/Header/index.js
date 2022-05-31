@@ -94,6 +94,7 @@ function Header() {
         backgroundColor: "#252d47",
         boxShadow: "inset 0 0 2px rgb(89, 94, 143)",
       }}
+      className="py-1"
     >
       <Container fluid>
         {/* <Navbar.Brand href="#home">Admin Dashboard</Navbar.Brand> */}

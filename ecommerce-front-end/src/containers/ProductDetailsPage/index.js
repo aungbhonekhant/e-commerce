@@ -31,7 +31,7 @@ function ProductDetailsPage(props) {
     }
 
     return (
-        <Layout>
+        <Layout menuheader={true} more={true} cart={true} search={true} login={true}>
             {/* <div>{product.productDetails.name}</div> */}
             <div className="productDescriptionContainer">
                 <div className="flexRow">

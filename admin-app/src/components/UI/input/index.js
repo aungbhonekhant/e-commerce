@@ -1,24 +1,30 @@
 import React from "react";
 import { Form } from "react-bootstrap";
+import './style.css';
 
 function Input(props) {
 
   let input = null;
   switch (props.type) {
     case 'select':
-      input =  <Form.Group>
+      input =  <Form.Group className="w-100">
                 {props.label && <Form.Label>{props.label}</Form.Label>}
                 <select
-                  className=" form-control form-control-sm"
+                  className="form-control select"
                   value={props.value}
                   onChange={props.onChange}
                   style={props.style}
+                  size="1"
                 >
-                  <option value="">{ props.placeholder }</option>
+                  {
+                    props.placeholder && 
+                    <option className="option" value="">{ props.placeholder }</option>
+                  }
+                  
                   {
                    props.options.length > 0 ? 
                    props.options.map((option, index) => 
-                      <option key={index} value={option.value}> {option.name} </option>  
+                      <option className="option" key={index} value={option.value}> {option.name} </option>  
                     ) : null
                   }
                 </select>

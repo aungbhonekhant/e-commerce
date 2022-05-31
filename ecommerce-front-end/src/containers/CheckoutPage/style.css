@@ -1,16 +1,42 @@
 .checkoutContainer{
-    width: calc(100% - 400px);
+    margin: 0 auto;
+    min-width: 70.5rem;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+.checkout{
+    display: inline-block;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+}
+
+.checkoutPriceDetial{
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    width: 23rem;
+    margin-left: 1rem;
 }
 .checkoutStep{
     box-sizing: border-box;
     background: #fff;
-    box-shadow: 0 1px 1px 0px rgba(0, 0, 0, 0.2);
-    margin-bottom: 10px;
+    box-shadow: 0 0.05rem 0.05rem 0px rgba(0, 0, 0, 0.2);
+    margin-bottom: 0.5rem;
+    min-width: 52rem;
 }
 .checkoutHeader{
     width: 100%;
     box-sizing: border-box;
-    padding: 10px 20px;
+    padding: 0.5rem 1.3rem;
     cursor: pointer;
 }
 .checkoutHeader.active{
@@ -41,11 +67,95 @@
 .checkoutHeader.active .stepTitle{
     color: #fff;
 }
-.loggedInId{
-    font-size: 12px;
-    margin: 0px 0 10px 60px;
+
+.checkoutPageLogin{
+    position: relative;
 }
 
+.checkoutPageLoginContainer{
+    padding: 26px 20px 18px 50px;
+    position: relative;
+}
+
+.checkoutPageLoginForm{
+    width: 41.66%;
+    padding: 0;
+}
+
+.checkoutPageLoginFormInput{
+    position: relative;
+    /* margin-bottom: 1.5rem; */
+    font-size: 1rem;
+}
+
+.userAggrement{
+    color: #878787;
+    font-size: 0.75rem;
+    font-weight: 400;
+}
+
+.checkoutPageLoginButton{
+    margin-top: 24px;
+}
+
+.loggedInId{
+    background-color: #f5faff;
+    padding: 1rem 3.5rem;
+}
+
+.loggedInIdName{
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding-right: 1rem;
+}
+
+.loggedInIdEmail{
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.checkoutPageSignup{
+    margin-top: 1.5rem;
+    display: flex;
+}
+
+.checkoutPageSignup span{
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #878787;
+}
+
+.checkoutPageSignup a{
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-left: 1rem;
+    color: rgb(40 116 240);
+    cursor: pointer;
+}
+
+.loginAdvantages{
+    padding-left: 5rem;
+    margin-top: 1.25rem;
+    font-size: 14px;
+    width: 58.33%;
+}
+
+.loginAdvantagesContainer{
+    color: #878787;
+}
+
+.loginAdvantagesList{
+    margin: 16px 0;
+    color: #212121;
+}
+
+.advantagesIcon{
+    fill: #2874f0 !important;
+    color: #2874f0 !important;
+    font-size: 17px;
+    margin-right: 12px;
+    vertical-align: middle;
+}
 .addressContainer{
     box-sizing: border-box;
     padding: 20px;
